@@ -1,0 +1,26 @@
+@using reCAPTCHA.MVC
+@{
+    ViewBag.Title = "Registration Page";
+}
+
+<div class="jumbotron">
+    <h1>Google reCAPTACHA for MVC solution withour reCAPTACHA.MVC.dll</h1>
+</div>
+<form id="event-form" class="col-sm-6 col-sm-offset-3" action="@Url.Action("Submit","Home")" method="post" novalidate>
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-6">
+            <div id="ReCaptchaDIV">
+                        @Html.Recaptcha(publicKey: System.Configuration.ConfigurationManager.AppSettings["reCaptchaPublicKey"])
+                        , theme: CaptchaTheme.Dark, type: CaptchaType.Image)
+            </div>
+        </div>
+        <div class="col-md-6">
+            <button name="submit" type="submit" class="btn btn-qubico btn-block g-recaptcha">
+                <i class=" fa fa-location-arrow">
+                </i>Validate
+            </button>
+        </div>
+    </div>
+</form>
+
